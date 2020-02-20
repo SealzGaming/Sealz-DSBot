@@ -1,24 +1,37 @@
-const Voice = require('./voice.js');
+const config = require('./config.json');
 const Discord = require('discord.js');
-const bot = new Discord.Client();
-const token = 'Njc5NTk0NjMyMzg4NDExNDMy.Xk2J6Q.r5wGZ7ua7kXvIvX2-MQXJYuvlO4';
+const ElasticVoice = require('./commands/elasticVoice.js');
+const DB = require('./helpers/database/db.js');
 
-bot.on('ready', () => {
+const bot = new Discord.Client();
+
+// Bot ready to work
+bot.once('ready', () => {
     console.log("I'm ready");
     console.log(`Logged in as ${bot.user.tag}!`);
-    
-    var guildid = '370437171410108416';
-    var category = 'LoL';
-    var name = 'Test';
 
-    var guild = bot.guilds.get(guildid);
-    guild.members.get(bot.user.id).setNickname('=SEALZ=Bot')
-
-    var test = new Voice(bot, guild);
-    test.createElasticVoiceChannel(name, category);
-
+    // TODO: Load information from database in case of bot restart
+    var db = new DB();
+    db.createDb();
 });
 
-bot.login(token);
+// Bot joined a new server
+bot.on('guildCreate', guild => {
+    guild.members.get(bot.user.id).setNickname(config.botName)
+});
+
+// Bot left a server
+bot.on('guildDelete', guild => {
+    // TODO: Clean server info from database? What if deleted by mistake?
+});
+
+// New message sent, let's parse it.
+bot.on('message', message => {
+    let name = 'Test';
+    let test = new ElasticVoice(bot, message.guild);
+    test.createElasticVoiceChannel(name, message.content);
+});
+
+bot.login(config.token);
 
 //var guild = bot.guilds.get("the guild id");
