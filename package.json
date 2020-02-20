@@ -1,14 +1,13 @@
 {
-  "name": "sealz_create_voice_channels",
-  "version": "0.0.0",
-  "description": "SEALZ_Create_Voice_Channels",
+  "name": "sealz_bot",
+  "version": "0.0.1",
+  "description": "=SEALZ= Discord Bot",
   "main": "bot.js",
   "author": {
-    "name": ""
+    "name": "Leonardo Huerta"
   },
   "dependencies": {
     "discord.js": "^11.5.1",
-    "ffbinaries": "^1.1.4",
-    "node-opus": "^0.3.3"
+    "sqlite3": "^4.1.1"
   }
 }

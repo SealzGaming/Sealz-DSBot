@@ -1,0 +1,12 @@
+{
+    "token": "",
+    "botName": "=SEALZ=Bot",
+
+    "db": {
+        "file": "./szbot.sqlite3"
+    },
+
+    "elasticVoice": {
+        
+    }
+}
