@@ -4,3 +4,4 @@ obj/*
 *.njsproj
 package-lock.json
 szbot.sqlite3
+*.code-workspace
