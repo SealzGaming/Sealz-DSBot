@@ -71,6 +71,4 @@ class ElasticVoice {
         });
     }
 }
-
-
 module.exports = ElasticVoice;
